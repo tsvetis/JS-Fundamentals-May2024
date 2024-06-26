@@ -128,3 +128,9 @@ solve([
 // 3 sections need repair.
 // You lost!
 // The pirate ship has sunken.
+
+const matrics = [
+  ["-", "-", "-"],
+  ["-", "-", "-"],
+  ["-", "-", "-"],
+];
