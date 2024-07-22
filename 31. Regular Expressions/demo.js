@@ -46,8 +46,49 @@
 //   console.log(m);
 // }
 
-// Split Regex
-const text = "1    23   4";
-const regexp = /\s+/g;
-const result = text.split(regexp);
-console.log(result);
+// // Split Regex
+// const text = "1    23   4";
+// const regexp = /\s+/g;
+// const result = text.split(regexp);
+// console.log(result);
+
+function mathGame(input) {
+  let arrOfSequenence = input.split(/[ ]+/);
+  const letterInPosition = {
+    getPosition(char) {
+      const ch = char.toLowerCase();
+      return letterInPosition[ch];
+    },
+  };
+  let value = 1;
+
+  for (let i = 97; i <= 122; i++) {
+    const letter = String.fromCharCode(i);
+    letterInPosition[letter] = value;
+    value++;
+  }
+
+  let result = 0;
+  for (let path of arrOfSequenence) {
+    let arrPath = path.split("");
+    const frontChar = arrPath.shift();
+    const backChar = arrPath.pop();
+    let numnber = arrPath.join("");
+    numnber = +numnber;
+    if (/[A-Z]/.test(frontChar)) {
+      numnber /= letterInPosition.getPosition(frontChar);
+    } else if (/[a-z]/.test(frontChar)) {
+      numnber *= letterInPosition.getPosition(frontChar);
+    }
+    if (/[A-Z]/.test(backChar)) {
+      numnber -= letterInPosition.getPosition(backChar);
+    } else if (/[a-z]/.test(backChar)) {
+      numnber += letterInPosition.getPosition(backChar);
+    }
+    result += numnber;
+  }
+
+  console.log(result.toFixed(2));
+}
+
+mathGame("A12b s17G");
