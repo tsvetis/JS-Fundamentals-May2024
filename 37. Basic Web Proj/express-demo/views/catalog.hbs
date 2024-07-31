@@ -1,0 +1,10 @@
+<p>This is Catalog page! </p>
+<div><a href="/create">Create product</a></div>
+<div>
+  <ul>
+    {{#each products}}
+      <li><a href="/catalog/{{@index}}">{{name}}</a></li>
+    {{/each}}
+  </ul>
+</div>
+<div><a href="/">Go back to home page.</a></div>
